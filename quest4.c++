@@ -1,4 +1,4 @@
-/* Игра: "Угадай число!" */
+/* Игра: "Угадай число за 10 попыток!" */
 
 #include <iostream>
 #include <cstdlib>
@@ -21,15 +21,19 @@ int main() {
 
   int inputNumber, count=0;
   do {
+    count++;
     cout << "Ваша догадка?" << endl;
     cin >> inputNumber;
+    if (count > 10) {
+      cout << "К сожалению, Вы проиграли! Вы использовали все 10 попыток. Это число было: " << secret << endl;
+      return 0;
+    }
     if (secret < inputNumber) {
       cout << "Загаданное число меньше < чем ваша догадка!" << endl;
     }
     if (secret > inputNumber) {
       cout << "Загаданное число больше > чем ваша догадка!" << endl;
     }
-    count++;
   } while (inputNumber != secret);
 
   cout << "Ура! Вы угадали число с " << count << "-й попытки! Это число было: " << secret << endl;
